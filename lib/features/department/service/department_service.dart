@@ -22,6 +22,7 @@ class DeparmemtService {
       List<DeparmentModel> data =
           deparmentModelFromJson(await response.stream.bytesToString());
       logs.i(data[1].name);
+      return data;
     } else {
       logs.i(response.reasonPhrase);
     }

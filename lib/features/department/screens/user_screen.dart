@@ -15,8 +15,8 @@ class DepartmentView extends ConsumerStatefulWidget {
 class _DepartmentViewState extends ConsumerState<DepartmentView> {
   @override
   void initState() {
-    super.initState();
     ref.read(departmentControllerInstance).requestData(context);
+    super.initState();
   }
 
   @override
@@ -24,7 +24,7 @@ class _DepartmentViewState extends ConsumerState<DepartmentView> {
     var controller = ref.watch(departmentControllerInstance);
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: AppColors.black,
+          backgroundColor: AppColors.secondary,
           centerTitle: true,
           title: const Text(
             "Departments",
@@ -51,7 +51,7 @@ class _DepartmentViewState extends ConsumerState<DepartmentView> {
                 height: screenHeight,
                 width: screenWidth,
                 child: ListView.builder(
-                    itemCount: controller.getData.name.length,
+                    itemCount: controller.getData.length,
                     itemBuilder: (context, index) {
                       return Column(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -69,7 +69,7 @@ class _DepartmentViewState extends ConsumerState<DepartmentView> {
                               Container(
                                 padding: const EdgeInsets.only(left: 15),
                                 child: Text(
-                                  controller.getData.name,
+                                  controller.getData[index].name,
                                   style: const TextStyle(
                                       fontSize: 18,
                                       color: Colors.black,

@@ -9,7 +9,7 @@ class AppSnackBarClass {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(
           msg,
-          style: const TextStyle(color: AppColors.black),
+          style: const TextStyle(color: AppColors.scaffoldColor),
         ),
         backgroundColor: AppColors.secondary,
         behavior: SnackBarBehavior.floating,

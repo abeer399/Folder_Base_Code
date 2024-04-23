@@ -1,6 +1,5 @@
-import 'package:feature_model/utils/constant/enums.dart';
-import 'package:feature_model/utils/local_storage/shared_preferences.dart';
-
+import '../../../../helpers/snackbar/snackbar.dart';
+import '../../../department/screens/user_screen.dart';
 import '/features/authentication/signin/models/login_model.dart';
 import '/features/authentication/signin/service/login_service.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +11,9 @@ final loginControllerInstance =
     ChangeNotifierProvider((ref) => LoginController());
 
 class LoginController extends ChangeNotifier {
-  TextEditingController email = TextEditingController();
-  TextEditingController password = TextEditingController();
+  TextEditingController email = TextEditingController(text: "Usman Ali");
+  TextEditingController password =
+      TextEditingController(text: "CwFm8hYHUhOkmf5es0xqYg==");
   final loginKey = GlobalKey<FormState>();
 
   bool isVisibil = false;
@@ -23,15 +23,18 @@ class LoginController extends ChangeNotifier {
     try {
       final form = loginKey.currentState!;
       if (form.validate()) {
-        var data = await LoginService.postLogin(
-            email: email.text, password: password.text);
-        if (data is String) {
-          isBusy(context);
-          var logData = loginModelFromJson(data);
-          LoginModel login = logData;
+        await LoginService.postLogin(email: email.text, password: password.text)
+            .then((value) {
+          if (value == "Unauthenticated") {
+            isBusy(context);
+            AppSnackBarClass.showSnackBar(context, "Unauthenticated");
+          } else {
+            isBusy(context);
 
-          logs.i(login);
-        }
+            Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => const DepartmentView()));
+          }
+        });
       }
     } catch (e) {
       logs.i(e);

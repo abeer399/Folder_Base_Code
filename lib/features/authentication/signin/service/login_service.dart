@@ -12,8 +12,8 @@ class LoginService {
         Uri.parse(
             'https://crystalonbritsols.net2online.com/api/v1/authorization/tokens'));
     request.fields.addAll({
-      'username': 'Usman Ali',
-      'password': 'CwFm8hYHUhOkmf5es0xqYg==',
+      'username': email,
+      'password': password,
       'grant_type': 'password',
       'client_id': '629569fa-8c19-477b-bdee-828e1ae83463',
       'scope': 'offline_access'
@@ -26,8 +26,10 @@ class LoginService {
           loginModelFromJson(await response.stream.bytesToString());
       logs.i(data.accessToken);
       SharedPref.setString(UserPrefEnum.token, data.accessToken);
+      return data;
     } else {
       logs.i(response.reasonPhrase);
+      return "Unauthenticated";
     }
   }
 }

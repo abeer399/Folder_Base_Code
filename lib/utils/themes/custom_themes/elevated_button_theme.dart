@@ -1,3 +1,4 @@
+import 'package:feature_model/utils/constant/color_constants.dart';
 import 'package:flutter/material.dart';
 
 class AppElevatedButtonTheme {
@@ -9,8 +10,8 @@ class AppElevatedButtonTheme {
           style: ElevatedButton.styleFrom(
     elevation: 10,
     foregroundColor: Colors.white, // Text Color (Foreground color)
-    shadowColor: const Color(0xFFF3BB2F),
-    backgroundColor: const Color(0xFFF3BB2F), // Background color
+    shadowColor: AppColors.secondary,
+    backgroundColor: AppColors.secondary, // Background color
     // foregroundColor: Colors.white,
     // disabledForegroundColor: Colors.grey,
     // disabledBackgroundColor: Colors.grey,

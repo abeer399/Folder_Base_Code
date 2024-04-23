@@ -1,10 +1,8 @@
-import 'package:feature_model/features/authentication/signin/controller/login_controller.dart';
-import 'package:feature_model/utils/constant/color_constants.dart';
-import 'package:feature_model/utils/device/media_query.dart';
+import '/features/authentication/signin/controller/login_controller.dart';
+import '/utils/constant/color_constants.dart';
+import '/utils/device/media_query.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../../department/screens/user_screen.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -112,10 +110,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               width: screenWidth * 0.9,
               child: ElevatedButton(
                   onPressed: () {
-                    loginController.loginUsers(context).then((value) {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => const DepartmentView()));
-                    });
+                    loginController.loginUsers(context);
                   },
                   child: const Center(
                     child: Text(

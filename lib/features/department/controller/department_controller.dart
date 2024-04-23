@@ -12,7 +12,7 @@ final departmentControllerInstance =
 
 class DeparmentController extends ChangeNotifier {
   bool isLoading = true;
-  late DeparmentModel getData;
+  late List<DeparmentModel> getData;
 
   Future<void> requestData(context) async {
     try {
@@ -22,7 +22,6 @@ class DeparmentController extends ChangeNotifier {
         isBusy(context);
         locator<DialogClass>().apiMsgDialog(context, msg: data);
       } else {
-        isLoading = false;
         getData = data;
         isBusy(context);
       }
